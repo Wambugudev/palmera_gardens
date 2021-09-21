@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
+    <link rel="shortcut icon" href="{{ asset('/media/photos/logo.svg') }}" heigh="30%">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -24,6 +25,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
+                    <img src="/media/photos/logo.svg" alt="Palmera Gardens" srcset="" height="80px">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -55,6 +57,15 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                    <span id="navbarDropdown" class="dropdown-item fs-4">Status: @if (Auth::user()->status == 'activated')
+                                        <span class="fs-4" style="color: rgb(0, 255, 42)">Activated</span>
+                                        @else
+                                        <span class="fs-4" style="color: rgb(0, 162, 255)">Not Activated</span> 
+                                        @endif
+                                    </span>
+                                  
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

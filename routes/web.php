@@ -17,4 +17,32 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware(['auth'])->group(function(){
+
+
+Route::get('/home', 'HomeController@redy')->name('home');
+
+    ////////////////////////////// My Routes admin Routes///////////////////////////////////
+
+Route::resource('admin','Admincontroller');
+
+// Redirect to admin panel
+Route::get('AdminPanel','Admincontroller@adminPanel')->name('Admin.Panel');
+
+// activate account
+Route::put('Activate/{id}','Admincontroller@activateAccount')->name('Activate.Account');
+// deactivate account
+Route::put('deactivate/{id}','Admincontroller@deactivateAccount')->name('Deactivate.Account');
+
+// Add alcohol item route
+Route::get('AddAlcohoItem','Admincontroller@AddAlcoholItem')->name('Alcohol.Item');
+
+// Store alcohol item route
+Route::post('StoreAlcohoItem','Admincontroller@StoreAlcoholItem')->name('Alcohol.Item.Store');
+
+//Admin add new alcohol itemrout resource
+Route::resource('AddAlcoholItem','AddAlcoholItemController');
+
+
+});
